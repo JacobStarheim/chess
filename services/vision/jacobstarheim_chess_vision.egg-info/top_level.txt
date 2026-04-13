@@ -1,3 +1,0 @@
-scripts
-tests
-vision_worker
