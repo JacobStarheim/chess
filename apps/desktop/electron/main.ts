@@ -39,13 +39,29 @@ async function createWindow(): Promise<void> {
     backgroundColor: "#11110e",
     title: "Jacob Starheim Chess",
     webPreferences: {
-      preload: join(__dirname, "../preload/preload.mjs"),
+      preload: join(__dirname, "../preload/preload.cjs"),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
 
   engineManager.attachWebContents(window.webContents);
+
+  window.webContents.on("console-message", (_event, level, message, line, sourceId) => {
+    console.log(`[renderer:${level}] ${message} (${sourceId}:${line})`);
+  });
+
+  window.webContents.on("render-process-gone", (_event, details) => {
+    console.error("[renderer] process gone", details);
+  });
+
+  window.webContents.on("did-fail-load", (_event, errorCode, errorDescription, validatedURL) => {
+    console.error("[renderer] did-fail-load", {
+      errorCode,
+      errorDescription,
+      validatedURL
+    });
+  });
 
   if (process.env.ELECTRON_RENDERER_URL) {
     await window.loadURL(process.env.ELECTRON_RENDERER_URL);

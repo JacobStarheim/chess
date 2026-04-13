@@ -22,7 +22,9 @@ export default defineConfig({
     build: {
       outDir: "out/preload",
       lib: {
-        entry: resolve(__dirname, "electron/preload.ts")
+        entry: resolve(__dirname, "electron/preload.ts"),
+        formats: ["cjs"],
+        fileName: () => "preload.js"
       }
     },
     resolve: {
