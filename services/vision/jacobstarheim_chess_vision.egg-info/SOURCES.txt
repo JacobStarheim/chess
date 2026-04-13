@@ -1,0 +1,13 @@
+pyproject.toml
+jacobstarheim_chess_vision.egg-info/PKG-INFO
+jacobstarheim_chess_vision.egg-info/SOURCES.txt
+jacobstarheim_chess_vision.egg-info/dependency_links.txt
+jacobstarheim_chess_vision.egg-info/requires.txt
+jacobstarheim_chess_vision.egg-info/top_level.txt
+tests/test_protocol.py
+tests/test_tablebase_helpers.py
+vision_worker/__init__.py
+vision_worker/board_import.py
+vision_worker/protocol.py
+vision_worker/tablebase.py
+vision_worker/worker.py

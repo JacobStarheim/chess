@@ -1,0 +1,117 @@
+.panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.boardCard,
+.controlsCard,
+.importCard {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    rgba(16, 17, 14, 0.9);
+  border: 1px solid rgba(215, 188, 138, 0.18);
+  border-radius: 28px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+  padding: 1rem;
+}
+
+.boardFrame {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.buttonRow,
+.metaRow,
+.importRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button {
+  background: #c99747;
+  border: none;
+  border-radius: 999px;
+  color: #1a1308;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.dangerButton {
+  background: #8b3f27;
+  color: #fff7ea;
+}
+
+.metaGrid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.label {
+  color: var(--text-muted);
+  display: grid;
+  font-size: 0.9rem;
+  gap: 0.35rem;
+}
+
+.input,
+.select {
+  background: rgba(9, 10, 8, 0.7);
+  border: 1px solid rgba(222, 194, 141, 0.16);
+  border-radius: 16px;
+  color: var(--text-primary);
+  font: inherit;
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+}
+
+.piecePalette {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.pieceButton {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(222, 194, 141, 0.12);
+  border-radius: 16px;
+  color: var(--text-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.15rem;
+  min-height: 3.1rem;
+}
+
+.pieceButtonActive {
+  background: rgba(201, 151, 71, 0.16);
+  border-color: rgba(201, 151, 71, 0.5);
+}
+
+.metaText {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.confidenceBox {
+  background: rgba(201, 151, 71, 0.08);
+  border: 1px solid rgba(201, 151, 71, 0.24);
+  border-radius: 18px;
+  color: var(--text-secondary);
+  padding: 0.85rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .metaGrid {
+    grid-template-columns: 1fr;
+  }
+}

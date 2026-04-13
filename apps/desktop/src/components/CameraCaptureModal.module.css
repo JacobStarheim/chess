@@ -1,0 +1,56 @@
+.backdrop {
+  align-items: center;
+  backdrop-filter: blur(14px);
+  background: rgba(5, 6, 4, 0.72);
+  display: grid;
+  inset: 0;
+  justify-items: center;
+  padding: 2rem;
+  position: fixed;
+  z-index: 55;
+}
+
+.modal {
+  background: rgba(17, 18, 15, 0.98);
+  border: 1px solid rgba(215, 188, 138, 0.18);
+  border-radius: 32px;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.4);
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+  width: min(760px, 100%);
+}
+
+.video {
+  aspect-ratio: 4 / 3;
+  background: #060605;
+  border-radius: 24px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button {
+  background: #c99747;
+  border: none;
+  border-radius: 999px;
+  color: #1a1308;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+
+.subtle {
+  color: var(--text-muted);
+}

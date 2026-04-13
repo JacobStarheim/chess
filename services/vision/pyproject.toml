@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jacobstarheim-chess-vision"
+version = "0.1.0"
+description = "Local vision and tablebase worker for the desktop chess analyzer."
+requires-python = ">=3.11"
+dependencies = [
+  "chess>=1.11.2",
+  "chessimg2pos>=0.1.6",
+  "numpy>=2.1.0",
+  "opencv-python>=4.11.0.86",
+  "Pillow>=11.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

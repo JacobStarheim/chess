@@ -1,0 +1,8 @@
+chess>=1.11.2
+chessimg2pos>=0.1.6
+numpy>=2.1.0
+opencv-python>=4.11.0.86
+Pillow>=11.0.0
+
+[dev]
+pytest>=8.3.0

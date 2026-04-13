@@ -1,0 +1,16 @@
+{
+  "name": "jacobstarheim-chess-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/desktop run dev",
+    "build": "npm --workspace apps/desktop run build",
+    "test": "npm --workspace apps/desktop run test",
+    "typecheck": "npm --workspace apps/desktop run typecheck",
+    "bootstrap:vision": "bash services/vision/scripts/bootstrap_venv.sh",
+    "test:vision": "bash services/vision/scripts/run_tests.sh"
+  }
+}
