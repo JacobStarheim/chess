@@ -55,7 +55,10 @@ export class ManagedInstaller {
   }): Promise<EngineDefinition> {
     const downloadDir = join(this.rootDir, "downloads");
     const installDir = join(this.rootDir, "managed", options.id, options.asset.version);
-    const archivePath = join(downloadDir, `${options.id}-${options.asset.version}.zip`);
+    const archivePath = join(
+      downloadDir,
+      `${options.id}-${options.asset.version}${archiveSuffixForUrl(options.asset.url)}`
+    );
 
     this.onProgress("prepare", `Preparing ${options.name} directories`);
     await mkdir(downloadDir, { recursive: true });
@@ -66,7 +69,7 @@ export class ManagedInstaller {
     await downloadFile(options.asset.url, archivePath);
 
     this.onProgress("extract", `Extracting ${options.name}`);
-    await execFileAsync("/usr/bin/ditto", ["-x", "-k", archivePath, installDir]);
+    await extractArchive(archivePath, installDir);
 
     const executablePath = await findFirstMatch(installDir, options.executablePattern);
     if (!executablePath) {
@@ -101,9 +104,10 @@ export class ManagedInstaller {
     const html = await response.text();
     const version = html.match(/Download Stockfish ([0-9.]+)/i)?.[1] ?? "latest";
     const url = findLink(html, (href) =>
-      href.endsWith(".zip") &&
-      href.toLowerCase().includes("mac") &&
-      href.toLowerCase().includes("apple")
+      (href.endsWith(".zip") || href.endsWith(".tar") || href.endsWith(".tar.gz")) &&
+      href.toLowerCase().includes("stockfish") &&
+      href.toLowerCase().includes("macos") &&
+      (href.toLowerCase().includes("apple-silicon") || href.toLowerCase().includes("m1"))
     );
 
     if (!url) {
@@ -179,6 +183,43 @@ async function findFirstMatch(
   }
 
   return null;
+}
+
+async function extractArchive(
+  archivePath: string,
+  outputDir: string
+): Promise<void> {
+  if (archivePath.endsWith(".zip")) {
+    await execFileAsync("/usr/bin/ditto", ["-x", "-k", archivePath, outputDir]);
+    return;
+  }
+
+  if (archivePath.endsWith(".tar") || archivePath.endsWith(".tar.gz") || archivePath.endsWith(".tgz")) {
+    await execFileAsync("/usr/bin/tar", ["-xf", archivePath, "-C", outputDir]);
+    return;
+  }
+
+  throw new Error(`Unsupported archive format for ${archivePath}`);
+}
+
+function archiveSuffixForUrl(url: string): string {
+  if (url.endsWith(".tar.gz")) {
+    return ".tar.gz";
+  }
+
+  if (url.endsWith(".tgz")) {
+    return ".tgz";
+  }
+
+  if (url.endsWith(".tar")) {
+    return ".tar";
+  }
+
+  if (url.endsWith(".zip")) {
+    return ".zip";
+  }
+
+  return ".archive";
 }
 
 function findLink(
