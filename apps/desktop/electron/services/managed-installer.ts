@@ -27,7 +27,7 @@ export class ManagedInstaller {
       name: "Stockfish",
       kind: "stockfish",
       asset,
-      executablePattern: /stockfish$/i
+      executablePattern: /^stockfish(?:-macos.*)?$/i
     });
   }
 
